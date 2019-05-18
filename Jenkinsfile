@@ -29,10 +29,7 @@ pipeline {
                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
                 }
             }
-            agent {
-             dockerfile true
-             image 'test'
-            }
+            agent { dockerfile true }
             steps {
               echo 'Deploying....'
             }
@@ -44,10 +41,7 @@ pipeline {
                     currentBuild.result == null || currentBuild.result == 'SUCCESS'
                 }
             }
-            agent {
-                         dockerfile true
-                         image 'test'
-                        }
+            agent { dockerfile true }
             steps{
                 echo 'Deploying....'
             }
