@@ -13,11 +13,11 @@ pipeline {
         }
         stage('Test') {
             steps {
-            git url: 'https://github.com/cyrille-leclerc/multi-module-maven-project'
+
                         withMaven(
                             maven: 'maven'
                         ) {
-                            sh "mvn clean test"
+                            sh "mvn clean test spring-boot:run"
                         }
 
             }
@@ -29,7 +29,10 @@ pipeline {
                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
                 }
             }
-            agent { dockerfile true }
+            agent {
+             dockerfile true
+             image 'test'
+            }
             steps {
               echo 'Deploying....'
             }
@@ -41,7 +44,10 @@ pipeline {
                     currentBuild.result == null || currentBuild.result == 'SUCCESS'
                 }
             }
-            agent { dockerfile true }
+            agent {
+                         dockerfile true
+                         image 'test'
+                        }
             steps{
                 echo 'Deploying....'
             }
