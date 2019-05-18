@@ -66,8 +66,5 @@
             </plugin>
         </plugins>
     </build>
-    <properties>
-        <start-class>com.main.TestApplication</start-class>
-    </properties>
 
 </project>
