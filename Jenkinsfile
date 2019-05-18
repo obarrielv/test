@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
         steps {
-            git url: 'https://github.com/obarrielv/test.git'
+          
             withMaven(
                 maven: 'maven'
             ) {
@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                 git url: 'https://github.com/obarrielv/test.git'
+
                         withMaven(
                             maven: 'maven'
                         ) {
