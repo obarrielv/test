@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    tools {
-        maven 'Maven 3.6.1'
-    }
     stages {
         stage('Build') {
         steps {
@@ -12,7 +9,7 @@ pipeline {
             ) {
                 sh "mvn clean install"
             }
-          } 
+          }
         }
         stage('Test') {
             steps {
