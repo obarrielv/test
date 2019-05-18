@@ -29,8 +29,7 @@ pipeline {
                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
                 }
             }
-            agent { dockerfile true
-                        additionalBuildArgs '-t my-image:latest'}
+            agent { dockerfile true }
             steps {
               echo 'Deploying....'
             }
