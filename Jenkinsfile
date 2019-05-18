@@ -13,7 +13,13 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'mvn clean test spring-boot:run'
+            git url: 'https://github.com/cyrille-leclerc/multi-module-maven-project'
+                        withMaven(
+                            maven: 'maven'
+                        ) {
+                            sh "mvn clean test spring-boot:run"
+                        }
+
             }
         }
         stage('Deploy to staging') {
