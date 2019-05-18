@@ -3,11 +3,11 @@ pipeline {
     stages {
         stage('Build') {
         steps {
-          
+
             withMaven(
                 maven: 'maven'
             ) {
-                sh "mvn clean install"
+                sh "mvn package && java -jar /target/test-1.jar"
             }
           }
         }
