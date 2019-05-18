@@ -5,12 +5,14 @@ pipeline {
     }
     stages {
         stage('Build') {
+        steps {
             git url: 'https://github.com/cyrille-leclerc/multi-module-maven-project'
             withMaven(
                 maven: 'maven'
             ) {
                 sh "mvn clean install"
             }
+          } 
         }
         stage('Test') {
             steps {
