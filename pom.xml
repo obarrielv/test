@@ -58,7 +58,6 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>1.2.0</version>
                 <configuration>
-                    <imageName>test</imageName>
                     <dockerDirectory>docker</dockerDirectory>
                     <resources>
                         <resource>
