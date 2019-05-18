@@ -29,8 +29,9 @@ pipeline {
                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
                 }
             }
+            agent { dockerfile true }
             steps {
-                sh 'docker build -f DockerFile -t test .'
+              echo 'Deploying....'
             }
         }
         stage('Deploy for production') {
@@ -40,8 +41,9 @@ pipeline {
                     currentBuild.result == null || currentBuild.result == 'SUCCESS'
                 }
             }
+            agent { dockerfile true }
             steps{
-                sh 'docker build -f DockerFile -t test .'
+                echo 'Deploying....'
             }
         }
     }
