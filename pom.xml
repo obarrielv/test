@@ -57,6 +57,13 @@
                             <include>${project.build.finalName}.jar</include>
                         </resource>
                     </resources>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>com.main.MainController</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>
