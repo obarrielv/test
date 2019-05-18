@@ -1,33 +1,36 @@
 pipeline {
+    agent any
     stages {
         stage('Build') {
             steps {
-                sh 'npm install'
+                sh 'make'
             }
         }
         stage('Test') {
             steps {
-                sh './jenkins/scripts/test.sh'
+                sh 'mvn clean test spring-boot:run'
             }
         }
         stage('Deploy to staging') {
             when {
                 branch 'release'
+                expression {
+                   currentBuild.result == null || currentBuild.result == 'SUCCESS'
+                }
             }
             steps {
-                sh './jenkins/scripts/deliver-for-development.sh'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh './jenkins/scripts/kill.sh'
+                sh 'docker build -f DockerFile -t test .'
             }
         }
         stage('Deploy for production') {
             when {
                 branch 'master'
+                expression {
+                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
+                }
             }
-            steps {
-                sh './jenkins/scripts/deploy-for-production.sh'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh './jenkins/scripts/kill.sh'
+            steps{
+                sh 'docker build -f DockerFile -t test .'
             }
         }
     }
