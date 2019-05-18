@@ -8,7 +8,6 @@ import java.util.Map;
 
 @RestController
 public class TestController {
-
     @RequestMapping(method = RequestMethod.POST, value = "/devops")
     public Map testEndPoint(@RequestBody Test model)
     {
