@@ -1,3 +1,4 @@
 FROM java:8
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/target/*.jar"]
+ADD /target/* test-1.jar
+ENTRYPOINT ["java", "-jar", "test.jar"]

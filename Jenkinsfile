@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent none
     stages {
         stage('Build') {
         steps {
@@ -29,7 +29,11 @@ pipeline {
                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
                 }
             }
-            agent { dockerfile true }
+            agent {
+                  docker {
+                        image 'test'
+                    }
+            }
             steps {
               echo 'Deploying....'
             }
@@ -41,7 +45,11 @@ pipeline {
                     currentBuild.result == null || currentBuild.result == 'SUCCESS'
                 }
             }
-            agent { dockerfile true }
+            agent {
+                              docker {
+                                    image 'test'
+                                }
+                        }
             steps{
                 echo 'Deploying....'
             }
