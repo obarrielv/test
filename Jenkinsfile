@@ -7,7 +7,7 @@ pipeline {
             withMaven(
                 maven: 'maven'
             ) {
-                sh "mvn package && java -jar /target/test-1.jar"
+                sh "mvn package"
             }
           }
         }
