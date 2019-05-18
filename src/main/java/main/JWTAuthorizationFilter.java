@@ -1,10 +1,10 @@
 package main;
 
-import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import javax.naming.AuthenticationException;
+
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
