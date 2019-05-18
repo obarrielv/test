@@ -7,7 +7,7 @@ pipeline {
             withMaven(
                 maven: 'maven'
             ) {
-                sh "mvn clean install"
+                sh "mvn clean install spring-boot:repackage"
             }
           }
         }
