@@ -1,7 +1,7 @@
 node {
 
         stage('Build') {
-        steps {
+
             git url: 'https://github.com/cyrille-leclerc/multi-module-maven-project'
             withMaven(
                 maven: 'maven'
@@ -9,9 +9,9 @@ node {
                 sh "mvn clean install"
             }
           }
-        }
+
         stage('Test') {
-            steps {
+
 
                         withMaven(
                             maven: 'maven'
@@ -19,7 +19,7 @@ node {
                             sh "mvn clean test"
                         }
 
-            }
+
         }
         stage('Deploy to staging') {
             when {
@@ -32,9 +32,6 @@ node {
                   docker {
                         image 'test'
                     }
-            }
-            steps {
-              echo 'Deploying....'
             }
         }
         stage('Deploy for production') {
@@ -49,9 +46,7 @@ node {
                                     image 'test'
                                 }
                         }
-            steps{
-                echo 'Deploying....'
-            }
+
         }
 
 }
