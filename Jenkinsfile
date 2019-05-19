@@ -7,7 +7,7 @@ pipeline {
                         withMaven(
                             maven: 'maven'
                         ) {
-                            sh "mvn clean test"
+                            sh "mvn clean test spring-boot:run"
                         }
 
             }
