@@ -1,48 +1,41 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
-        steps {
-            git url: 'https://github.com/cyrille-leclerc/multi-module-maven-project'
-            withMaven(
-                maven: 'maven'
-            ) {
-                sh "mvn clean install"
-            }
-          }
-        }
         stage('Test') {
             steps {
-            git url: 'https://github.com/cyrille-leclerc/multi-module-maven-project'
+
                         withMaven(
                             maven: 'maven'
                         ) {
-                            sh "mvn clean test spring-boot:run"
+                            sh "mvn clean test"
                         }
 
             }
         }
         stage('Deploy to staging') {
-            when {
-                branch 'release'
-                expression {
-                   currentBuild.result == null || currentBuild.result == 'SUCCESS'
+                 when {branch 'release'}
+                steps {
+
+                    withMaven(
+                        maven: 'maven'
+                    ) {
+                        sh "mvn clean package docker:build -DpushImage"
+                        sh "docker build -t test ."
+                    }
+                  }
                 }
-            }
-            steps {
-                sh 'docker build -f DockerFile -t test .'
-            }
-        }
-        stage('Deploy for production') {
-            when {
-                branch 'master'
-                expression {
-                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
-                }
-            }
-            steps{
-                sh 'docker build -f DockerFile -t test .'
-            }
-        }
+          stage('Deploy to production') {
+                   when {branch 'master'}
+                  steps {
+
+                      withMaven(
+                          maven: 'maven'
+                      ) {
+                          sh "mvn clean package docker:build -DpushImage"
+                          sh "docker build -t test ."
+                      }
+                    }
+                  }
+
     }
 }
