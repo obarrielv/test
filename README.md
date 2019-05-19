@@ -12,4 +12,7 @@ Steps to follow:
 
 4 - Run Test Job (you can select master or release).
 
-5 - Start Test Docker Container: docker run -p 8081:8080 test (The service should be running over pot 8081)
+5 - Start Test Docker Container: docker run -p 8081:8080 production or
+                                 docker run -p 8081:8080 staging 
+
+6 - The service should be running over pot 8081 ready for testing
