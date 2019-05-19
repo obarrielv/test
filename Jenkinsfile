@@ -1,7 +1,16 @@
 pipeline {
     agent any
     stages {
+        stage('Build') {
+        steps {
 
+            withMaven(
+                maven: 'maven'
+            ) {
+                sh "mvn package"
+            }
+          }
+        }
         stage('Test') {
             steps {
 
@@ -13,16 +22,6 @@ pipeline {
 
             }
         }
-         stage('Build') {
-                steps {
-
-                    withMaven(
-                        maven: 'maven'
-                    ) {
-                        sh "mvn package"
-                    }
-                  }
-                }
         stage('Deploy to staging') {
             when {
                 branch 'release'
