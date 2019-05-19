@@ -7,7 +7,7 @@ pipeline {
             withMaven(
                 maven: 'maven'
             ) {
-                sh "mvn package"
+                sh "mvn clean package docker:build -DpushImage"
             }
           }
         }
@@ -29,14 +29,10 @@ pipeline {
                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
                 }
             }
+            agent { dockerfile true }
             steps {
-              withMaven(
-                              maven: 'maven'
-                          ) {
-                              sh "mvn package"
-                          }
+              echo 'Deploying....'
             }
-             agent { dockerfile true }
         }
         stage('Deploy for production') {
             when {
