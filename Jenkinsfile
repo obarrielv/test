@@ -15,9 +15,7 @@ pipeline {
         stage('Deploy to staging') {
                  when {
                                 branch 'release'
-                                expression {
-                                   currentBuild.result == null || currentBuild.result == 'SUCCESS'
-                                }
+
                             }
                 steps {
 
@@ -32,9 +30,7 @@ pipeline {
           stage('Deploy to production') {
                    when {
                                   branch 'master'
-                                  expression {
-                                     currentBuild.result == null || currentBuild.result == 'SUCCESS'
-                                  }
+
                               }
                   steps {
 
