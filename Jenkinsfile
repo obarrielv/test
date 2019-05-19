@@ -13,10 +13,7 @@ pipeline {
             }
         }
         stage('Deploy to staging') {
-                 when {
-                                branch 'release'
-
-                            }
+                 when {branch 'release'}
                 steps {
 
                     withMaven(
@@ -28,10 +25,7 @@ pipeline {
                   }
                 }
           stage('Deploy to production') {
-                   when {
-                                  branch 'master'
-
-                              }
+                   when {branch 'master'}
                   steps {
 
                       withMaven(
