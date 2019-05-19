@@ -29,10 +29,14 @@ pipeline {
                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
                 }
             }
-            agent { dockerfile true }
             steps {
-              echo 'Deploying....'
+              withMaven(
+                              maven: 'maven'
+                          ) {
+                              sh "mvn package"
+                          }
             }
+             agent { dockerfile true }
         }
         stage('Deploy for production') {
             when {
