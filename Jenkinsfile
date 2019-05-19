@@ -20,7 +20,7 @@ pipeline {
                         maven: 'maven'
                     ) {
                         sh "mvn clean package docker:build -DpushImage"
-                        sh "docker build -t test ."
+                        sh "docker build -t staging ."
                     }
                   }
                 }
@@ -32,7 +32,7 @@ pipeline {
                           maven: 'maven'
                       ) {
                           sh "mvn clean package docker:build -DpushImage"
-                          sh "docker build -t test ."
+                          sh "docker build -t production ."
                       }
                     }
                   }
