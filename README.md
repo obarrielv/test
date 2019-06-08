@@ -1,5 +1,7 @@
 Steps to follow:
 
+0- Create a folder named "ansible" in your home folder and download all the ansible files from https://github.com/obarrielv/devops
+
 1- sudo yum install epel-release -y
 
 2- sudo yum install ansible -y
